@@ -84,3 +84,31 @@ print("All cards in the player's hand are...")
 for (value, card) in playerHand.enumerated() {
     print("Card \(value) in player's hand is a suit of \(Suit.glyph(forHashValue: card.suit)) and value is \(card.value)")
 }
+
+// "Shuffle" the deck and give half the cards to the computer
+while deck.count > 0 {
+    
+    // Generate a random number between 0 and the count of cards still left in the deck
+    var position = Int(arc4random_uniform(UInt32(deck.count)))
+    
+    // Copy the card in this position to the computer's hand
+    computerHand.append(deck[position])
+    
+    // Remove the card from the deck for this position
+    deck.remove(at: position)
+    
+}
+
+// Iterate over the computer's hand
+print("=====================================")
+print("All cards in the computer's hand are...")
+for (value, card) in computerHand.enumerated() {
+    print("Card \(value) in computer's hand is a suit of \(Suit.glyph(forHashValue: card.suit)) and value is \(card.value)")
+}
+
+// Only plays until player one either wins or loses
+while playerHand.count > 0 && playerHand.count < 52 {
+    if playerHand[0].value > computerHand[0].value {
+        
+    }
+}
