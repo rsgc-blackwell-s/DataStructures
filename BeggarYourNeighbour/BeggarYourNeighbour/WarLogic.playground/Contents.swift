@@ -106,9 +106,69 @@ for (value, card) in computerHand.enumerated() {
     print("Card \(value) in computer's hand is a suit of \(Suit.glyph(forHashValue: card.suit)) and value is \(card.value)")
 }
 
-// Only plays until player one either wins or loses
+// Only plays game until player one either wins or loses
 while playerHand.count > 0 && playerHand.count < 52 {
+    
+    // If player has a higher card
     if playerHand[0].value > computerHand[0].value {
+        playerHand.append(computerHand[0])
+        computerHand.remove(at: 0)
+        playerHand.append(playerHand[0])
+        print("=====================================")
+        print ("Player's card is higher! Player now has \(playerHand.count) cards.")
+        print ("Player \(playerHand.count) - \(computerHand.count) Computer")
+    }
+    
+    // If computer has a higher card
+    if computerHand[0].value > playerHand[0].value {
+        computerHand.append(playerHand[0])
+        playerHand.remove(at: 0)
+        computerHand.append(computerHand[0])
+        print("=====================================")
+        print ("Computer's card is higher! Computer now has \(computerHand.count) cards.")
+        print ("Player \(playerHand.count) - \(computerHand.count) Computer")
+    }
+    
+    // If there's a tie
+    if computerHand[0].value == playerHand[0].value {
+        print("=====================================")
+        print ("It's a tie, let war begin!")
         
+        // If player wins the war
+        if playerHand[4].value > computerHand[4].value {
+            playerHand.append(computerHand[0])
+            playerHand.append(computerHand[0])
+            playerHand.append(computerHand[0])
+            playerHand.append(computerHand[0])
+            playerHand.append(computerHand[0])
+            computerHand.remove(at: 0)
+            computerHand.remove(at: 0)
+            computerHand.remove(at: 0)
+            computerHand.remove(at: 0)
+            computerHand.remove(at: 0)
+            playerHand.append(playerHand[0])
+            print("=====================================")
+            print ("Player wins! Player now has \(playerHand.count) cards.")
+            print ("Player \(playerHand.count) - \(computerHand.count) Computer")
+        }
+        
+        // If computer wins the war
+        if computerHand[4].value > playerHand[4].value {
+            computerHand.append(playerHand[0])
+            computerHand.append(playerHand[0])
+            computerHand.append(playerHand[0])
+            computerHand.append(playerHand[0])
+            computerHand.append(playerHand[0])
+            playerHand.remove(at: 0)
+            playerHand.remove(at: 0)
+            playerHand.remove(at: 0)
+            playerHand.remove(at: 0)
+            playerHand.remove(at: 0)
+            computerHand.append(computerHand[0])
+            print("=====================================")
+            print ("Player wins! Player now has \(playerHand.count) cards.")
+            print ("Player \(playerHand.count) - \(computerHand.count) Computer")
+        }
     }
 }
+
